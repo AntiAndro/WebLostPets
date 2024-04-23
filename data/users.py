@@ -14,6 +14,10 @@ class User(SqlAlchemyBase, UserMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    adds = orm.relationship("Adds", back_populates='user')
+
+    def __repr__(self):
+        return f"<User> {self.id} {self.name} {self.email}"
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" class="container">
+<div class="col-md6 border rounded">
+    {% if adds.lost_find == 'потерян' %}
+        <h2>Пропала {{adds.type_pet}}: {{adds.place}}</h2>
+    {% elif adds.lost_find == 'найден' %}
+        <h2>Найдена {{adds.type_pet}}: {{adds.place}}</h2>
+    {% endif %}
+    <div class="pt-5">
+        {{adds.description}}
+    </div>
+    <div class="table-responsive pt-5">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Пол питомца</th>
+            <td></td>
+            <td></td>
+            <td>{{adds.gender}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Добавлено</th>
+            <td></td>
+            <td></td>
+            <td>{{adds.created_date}}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">Пропал(а)</th>
+            <td></td>
+            <td></td>
+            <td>{{adds.time}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Имя хозяина(нашедшего)</th>
+            <td></td>
+            <td></td>
+            <td>{{adds.name}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Номер телефона</th>
+            <td></td>
+            <td></td>
+            <td>{{adds.number}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+    {% if current_user.is_authenticated and current_user == adds.user %}
+    <div class="pt-5">
+        <a href="/adds_delete/{{ adds.id }}" class="btn btn-danger">
+            Удалить
+        </a>
+    </div>
+{% endif %}
+</main>
+{% endblock %}

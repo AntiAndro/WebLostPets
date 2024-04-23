@@ -2,14 +2,15 @@
 
 {% block content %}
 <main role="main" class="container">
-<h1>Объявления</h1>
-{% if current_user.is_authenticated %}
-    <a href="lost" class="btn btn-secondary">Я потерял питомца</a>
-    <a href="find" class="btn btn-secondary">Я нашел питомца</a>
-{% endif %}
-{% for item in adds%}
-<div class="col-md6 border rounded">
-    {% if item.lost_find == 'потерян' %}
+    <h1 class="pt-5">Мой профиль</h1>
+    <a href="/logout" class="px-3">Выйти</a>
+</main>
+<main role="main" class="container px-5">
+    <div class="px-5">
+    <h2 class="pt-5">Мои объявления</h2>
+    <div class="col-md6 border rounded">
+    {% for item in adds%}
+        {% if item.lost_find == 'потерян' %}
         <h2>Пропала {{item.type_pet}}: {{item.place}}</h2>
     {% elif item.lost_find == 'найден' %}
         <h2>Найдена {{item.type_pet}}: {{item.place}}</h2>
@@ -28,7 +29,8 @@
             Подробнее
         </a>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
+    </div>
+    </div>
 </main>
 {% endblock %}

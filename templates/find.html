@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" class="container">
+<h1>Нашелся питомец</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <h2 class="px-5 pt-5 display-5 fw-bold text-body-emphasis">1: Кто нашелся?</h2>
+    <a class="px-5">Укажите вид и пол найденного питомца</a>
+    <div class="px-5 pt-5">
+        <p>Вид питомца:</p>
+        <label class="list-group-item d-flex">
+            <a>{{ form.type_cat() }} {{ form.type_cat.label }}</a>
+            <a class="px-5">{{ form.type_dog() }} {{ form.type_dog.label }}</a>
+            <a>{{ form.type_other() }} {{ form.type_other.label }}</a>
+        </label>
+        <p>Пол питомца:</p>
+        <label class="list-group-item d-flex">
+            <a>{{ form.gender_male() }} {{ form.gender_male.label }}</a>
+            <a class="px-5">{{ form.gender_female() }} {{ form.gender_female.label }}</a>
+        </label>
+        <h2 class="pt-5 display-5 fw-bold text-body-emphasis">2: Где и когда был найден питомец?</h2>
+    <a>Укажите место и дату пропажи найденного питомца</a>
+        <div class="pt-5">
+            <p>
+            {{ form.place.label }}<br>
+                <a>Город, улица, дом (Точный домашний адрес указывать не рекомендуется)</a>
+            {{ form.place(class="form-control") }}<br>
+            {% for error in form.place.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.time.label }}<br>
+                <a>День, месяц, год (Пример: 01.01.2020)</a>
+            {{ form.time(class="form-control") }}<br>
+            {% for error in form.time.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+            </p>
+        </div>
+        <h2 class="pt-5 display-5 fw-bold text-body-emphasis">3: Описание</h2>
+        <a>Напишите дополнительную информацию: цвет шерсти, обстоятельства, при которых был найден питомец, приметы</a>
+        <div class="pt-5">
+            <p>
+            {{ form.description.label }}<br>
+            {{ form.description(class="form-control") }}<br>
+            {% for error in form.description.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+        </div>
+        <h2 class="pt-5 display-5 fw-bold text-body-emphasis">4: Связь</h2>
+        <a>Укажите контактную информацию, чтобы с вами могли связаться</a>
+        <div class="pt-5">
+            <p>
+            {{ form.name.label }}<br>
+            {{ form.name(class="form-control") }}<br>
+            {% for error in form.name.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.number.label }}<br>
+            {{ form.number(class="form-control") }}<br>
+            {% for error in form.number.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+            </p>
+        </div>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+        </div>
+</form>
+    </main>
+{% endblock %}
